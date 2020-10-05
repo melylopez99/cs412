@@ -3,7 +3,7 @@
 const problem3 = (str, func) => func(str);
 
 // part 1
-let s = '‘supercalifragilisticexpialidocious'
+let s = 'supercalifragilisticexpialidocious'
 part1 = problem3(s, (s) => s.replace(/c/gi,',c').split(','));
 
 // part 2
@@ -15,7 +15,7 @@ function replaceA(originalString, modifiedString, numberReplaced, length) {
     this.length = length;
 }
 
-let part2 = new replaceA(s, problem3(s, (str) => str.replace('a', 'A')), (s.match(/a/g) || []).length, s.length);
+let part2 = new replaceA(s, problem3(s, (str) => str.replace(/a/gi, 'A')), (s.match(/a/g) || []).length, s.length);
 console.table(part2);
 
 module.exports = {problem3};

@@ -54,9 +54,9 @@ describe('problem3Test', () => {
         let expected = ['super', 'califragilisti', 'cexpialido', 'cious'];
         expect(expected).to.eql(actual);
     });
-    it('should return zsspolieeaML', () => {
-        let s2 = 'MelissaLopez'
-        let expected = 'zsspolieeaML'
-        expect(expected).equal(reverse(s2));
+    it('should return supercAlifrAgilisticexpiAlidocious', () => {
+        let actual = problem3('supercalifragilisticexpialidocious', (str) => str.replace(/a/gi, 'A'))
+        let expected = 'supercAlifrAgilisticexpiAlidocious'
+        expect(expected).equal(actual);
     });
 });
