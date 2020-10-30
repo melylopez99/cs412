@@ -1,18 +1,22 @@
 const express = require('express');
 const router = express.Router();
-
+const fetch = require('node-fetch')
+const FETCHCONFIG = require('../config/fetchConfig')
 
 router.route('/')
-    .get((req,res, next) => {
-        res.render('ps3', { string: 'cs412 is a great class!' });
-
-    })
-
     .post((req,res,next) => {
-    //console.log(`Got ${req.body.name} on ${req.url} (${req.method})`);
-    //req.params.name=req.body.name;
-    res.render('ps3c',{'name': req.body.name, 'length': req.body.name.length});
+    let githubInfo = doRequest(req.body.gname)
+        .then(cleanReturnValue => {
+            res.render('ps4',{'name': req.body.gname, 'num_repo': cleanReturnValue.public_repos,
+            'git_url': cleanReturnValue.html_url});
+        });
     })
 
+const doRequest = async value => {
+    let rawReturnValue = await fetch(FETCHCONFIG.fetchOptions.url + value);
+    let cleanReturnValue = await rawReturnValue.json();
+    return cleanReturnValue;
+
+};
 
 module.exports = router;
