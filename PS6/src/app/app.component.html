@@ -1,0 +1,15 @@
+<h2> Welcome to Github Info App!</h2>
+<h3>List of Github users</h3>
+
+<div>
+  <ul *ngFor="let user of users">
+    <li (click)="setSelectedUser(user)">{{user.login}}</li>
+  </ul>
+</div>
+
+<div>
+  Username: <input type="text" [(ngModel)]="selectedUser.login">
+  ID: <input type="text" [(ngModel)]="selectedUser.id">
+  URL: <input type="text" [(ngModel)]="selectedUser.htmlUrl">
+  Repos: <input type="text" [(ngModel)]="selectedUser.publicRepos">
+</div>
