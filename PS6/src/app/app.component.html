@@ -7,7 +7,7 @@
   </ul>
 </div>
 
-<div>
+<div *ngIf="selectedUser">
   Username: <input type="text" [(ngModel)]="selectedUser.login">
   ID: <input type="text" [(ngModel)]="selectedUser.id">
   URL: <input type="text" [(ngModel)]="selectedUser.htmlUrl">
