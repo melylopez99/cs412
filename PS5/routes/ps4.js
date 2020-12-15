@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch')
-const FETCHCONFIG = require('../config/fetchConfig')
+//const FETCHCONFIG = require('../config/fetchConfig')
 
 const redis = require('redis');
 const client = redis.createClient();
@@ -27,22 +27,28 @@ router.route('/')
         let match = await existsAsync(gname);
         if (match) {
             let value = await getAsync(gname);
-            let response = {
+            let response = [{
                 githubName: gname,
                 repos: value,
                 cached: true
-            }
+            }, {githubName: gname,
+                    repos: value,
+                    cached: true
+                }]
             res.send(response);
         } else {
-            let githubInfo = await fetch(FETCHCONFIG.fetchOptions.url + gname);
+            let githubInfo = await fetch('https://api.github.com/users/' + gname);
             let githubInfoJson = await githubInfo.json();
             let status = await setAsync(gname, githubInfoJson.public_repos);
             status = await expireAsync(gname, 15)
-            let response = {
+            let response = [{
                 githubName: gname,
                 repos: githubInfoJson.public_repos,
                 cached: false
-            }
+            },{
+                githubName: gname,
+                repos: githubInfoJson.public_repos,
+                cached: false}]
             res.send(response)
         }
     });
