@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GitService} from '../services/git.service';
+import {Github} from '../data/github';
 
 
 @Component({
@@ -9,6 +10,9 @@ import {GitService} from '../services/git.service';
 })
 export class CallingHTTPComponent implements OnInit {
   currentGithub: any;
+  users: Github[] = [];
+  user: Github;
+  selectedUser: Github;
 
   constructor(private gitService: GitService) { }
 
@@ -18,9 +22,12 @@ export class CallingHTTPComponent implements OnInit {
   getRepos(): void {
     this.gitService.getRepos().subscribe(
       response => {
-          this.currentGithub = response;
+          this.users = response;
         });
 
+  }
+  setSelectedUser(user: Github): void {
+    this.selectedUser = user;
   }
 
 }

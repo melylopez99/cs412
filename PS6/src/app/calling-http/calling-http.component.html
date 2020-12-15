@@ -1,7 +1,17 @@
 <h3>Calling HTTP from a service</h3>
 
 <button (click)="getRepos()">Get the repositories</button>
-<br/>
-Current Repo Name: {{currentGithub.login}}
-<br/>
-Current HTML URL: {{currentGithub.html_url}}
+
+<h3>List of Github Repos</h3>
+
+<div>
+  <ul *ngFor="let user of users">
+    <li (click)="setSelectedUser(user)">{{user.login}}</li>
+  </ul>
+</div>
+
+<div *ngIf="selectedUser">
+  Username: <input type="text" [(ngModel)]="selectedUser.login">
+  ID: <input type="text" [(ngModel)]="selectedUser.id">
+  URL: <input type="text" [(ngModel)]="selectedUser.htmlUrl">
+  Repos: <input type="text" [(ngModel)]="selectedUser.publicRepos">

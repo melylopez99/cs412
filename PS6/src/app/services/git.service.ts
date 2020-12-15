@@ -11,6 +11,6 @@ export class GitService {
   constructor(private http: HttpClient) { }
 
   getRepos(): Observable<any> {
-    return this.http.get(gitConfig.baseUrl, {observe: 'body', responseType: 'json'});
+    return this.http.get('http://localhost:3000/ps4', {observe: 'body', responseType: 'json'});
   }
 }
