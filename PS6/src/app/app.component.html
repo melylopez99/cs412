@@ -1,6 +1,5 @@
 <h2> Welcome to Github Info App!</h2>
 <h3>List of Github users</h3>
-<app-parent-a></app-parent-a>
 
 <div>
   <ul *ngFor="let user of users">
@@ -14,3 +13,5 @@
   URL: <input type="text" [(ngModel)]="selectedUser.htmlUrl">
   Repos: <input type="text" [(ngModel)]="selectedUser.publicRepos">
 </div>
+
+<app-calling-http></app-calling-http>

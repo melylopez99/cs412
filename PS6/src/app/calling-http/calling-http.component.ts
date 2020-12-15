@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GitService} from '../services/git.service';
 
+
 @Component({
   selector: 'app-calling-http',
   templateUrl: './calling-http.component.html',
@@ -14,8 +15,11 @@ export class CallingHTTPComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getRepos() {
-    this.gitService.getRepos();
+  getRepos(): void {
+    this.gitService.getRepos().subscribe(
+      response => {
+          this.currentGithub = response;
+        });
 
   }
 
